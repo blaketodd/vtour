@@ -18,6 +18,9 @@ body.contextual_navigation
     right: 0;
     overflow: hidden;
     z-index: 5;
+    border-color: #6F737A;
+    border-width: 1px;
+    border: solid;
 }
 
 .mapImage{

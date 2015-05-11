@@ -306,11 +306,16 @@ $(function () {
 
             $(".map_button").click(function(){
                 if(mapState === 0) {
-                    $("#map").animate({width: window.innerWidth * 0.25, height: window.innerHeight * 0.38}, function(){
-                        $('#map').animate({
-                            scrollLeft: currentLocation.x - ($('#map').width() / 2),
-                            scrollTop: currentLocation.y - ($('#map').height() / 2)
-                        }, 1500, 'easeInOutQuad');
+                    $("#map").show(function() {
+                        $("#map").animate({
+                            width: window.innerWidth * 0.25,
+                            height: window.innerHeight * 0.38
+                        }, function () {
+                            $('#map').animate({
+                                scrollLeft: currentLocation.x - ($('#map').width() / 2),
+                                scrollTop: currentLocation.y - ($('#map').height() / 2)
+                            }, 1500, 'easeInOutQuad');
+                        });
                     });
                     mapState += 1;
                 }
@@ -325,7 +330,9 @@ $(function () {
                     mapState += 1;
                 }
                 else if(mapState === 2) {
-                    $("#map").animate({width: '0', height: '0'});
+                    $("#map").animate({width: '0', height: '0'}, function(){
+                        $("#map").hide('blind');
+                    });
                     $(".map_button").animate({right: window.innerWidth * 0.001});
                     mapState = 0;
                 }
