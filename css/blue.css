@@ -1,4 +1,4 @@
-.blue .dd-wrapper {background: t; top:25%; color: white; font: bold 100% Arial, sans-serif;}
+.blue .dd-wrapper {background: t; top:25%; color: white; font-size: 2vw; font-weight: bold; font-family: Arial, sans-serif;}
 .blue .dd-menu { background:rgba(0,0,0,0.01);}
 .blue .dd-menu a {background:rgba(0,0,0,0.01); height: 50%; text-decoration: none; padding: 3% 3% 3% 5%; display: block; color: white; }
 .blue .dd-menu ul a {background:rgba(0,0,0,0.01); height: 75%;}

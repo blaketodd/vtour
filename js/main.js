@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
     /********************************
      *  Mouse move on Map           *
@@ -29,7 +29,7 @@ $(function() {
                 var directionX = (previousX - e.clientX) > 0 ? 1 : -1;
                 var directionY = (previousY - e.clientY) > 0 ? 1 : -1;
                 $("#map").scrollLeft($("#map").scrollLeft() + 10 * directionX);
-                $("#map").scrollTop($("#map").scrollTop() +  10 * directionY);
+                $("#map").scrollTop($("#map").scrollTop() + 10 * directionY);
                 previousX = e.clientX;
                 previousY = e.clientY;
             }
@@ -58,11 +58,11 @@ $(function() {
 //    }
 //});
 
-    /*
-    fancy box things
-     */
+    /***********************
+     *  fancy box things   *
+     ***********************/
 
-    $(document).on('click', '.fancybox', function(event) {
+    $(document).on('click', '.fancybox', function (event) {
         event.preventDefault()
         console.log("in there");
         console.log(this.href);
@@ -70,7 +70,15 @@ $(function() {
             type: 'iframe',
             href: this.href,
             title: this.title
-    })
-});
+        })
+    });
 
+
+    /******************************************
+     * carousel item scaling code, haven't figured it out quiet yet
+     ******************************************/
+
+    for(var i in thumbs) {
+        console.log($("#thumbImage"+String(i)).position());
+    }
 });

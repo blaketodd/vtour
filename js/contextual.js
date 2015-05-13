@@ -457,11 +457,12 @@ $(function () {
         dispMainMenu();
         $('#drilldown-1').dcDrilldown({
             speed: 'fast',
-            saveState: true,
+            saveState: false,
             showCount: false,
             linkType: 'backlink',
             defaultText: ''
         });
         $(window).trigger('hashchange');
     }
+
 });
