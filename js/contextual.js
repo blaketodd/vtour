@@ -1,40 +1,3 @@
-$(function () {
-
-    var mapState = 1;
-
-    if (location.hash !== "") {
-        $("#start").removeClass("show");
-    }
-    $("#start").find("a").on("click", function () {
-        $("#start").removeClass("show");
-        document.getElementById('video').innerHTML = '<video z-index="10000" width="100%" height="100%"  controls autoplay>' +
-            '<source src="video/output.webm" type="video/webm"></video>';
-        $("#map").hide('blind');
-        $("#carousel").hide('blind');
-        $(this).off("click");
-        $("#video").click(function () {
-            $("#video").remove();
-            $("#map").show();
-            $('#map').animate({
-                scrollLeft: currentLocation.x - ($('#map').width() / 2),
-                scrollTop: currentLocation.y - ($('#map').height() / 2)
-            }, 1500, 'easeInOutQuad');
-            $("#carousel").show();
-        });
-
-        $(function () {
-            setTimeout(function () {
-                $("#video").remove();
-                $("#map").show();
-                $('#map').animate({
-                    scrollLeft: currentLocation.x - ($('#map').width() / 2),
-                    scrollTop: currentLocation.y - ($('#map').height() / 2)
-                }, 1500, 'easeInOutQuad');
-                $("#carousel").show();
-            }, 11740);
-        });
-    });
-
     /**
      * Creates an instance of a Location Item
      * @constructor
@@ -438,31 +401,3 @@ $(function () {
             }
         }
     }
-
-    /***
-     * Functions above requires the location tag passed in to be # + location tag name. (i.e "#hurst")
-     */
-
-    $(window).on('hashchange', function () {
-        getImage(location.hash);
-        getLocation(location.hash);
-        getNavs(location.hash);
-        getHspots(location.hash);
-        loadMap(location.hash);
-        getCIs(location.hash);
-        $('#map').animate({scrollLeft: currentLocation.x - ($('#map').width() / 2), scrollTop: currentLocation.y - ($('#map').height() / 2)}, 1500, 'easeInOutQuad');
-    });
-
-    if (window.location.hash) {
-        dispMainMenu();
-        $('#drilldown-1').dcDrilldown({
-            speed: 'fast',
-            saveState: false,
-            showCount: false,
-            linkType: 'backlink',
-            defaultText: ''
-        });
-        $(window).trigger('hashchange');
-    }
-
-});

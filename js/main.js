@@ -40,23 +40,40 @@ $(function () {
      *  Map Toggle                  *
      ********************************/
 
-//var mapState = 0;
-//
-//$(".map_button").click(function(){
-//
-//    if(mapState == 0) {
-//        $("#map").animate({width: window.innerWidth * 0.25, height: window.innerHeight * 0.38});
-//        mapState += 1;
-//    }
-//    else if(mapState == 1){
-//        $("#map").animate({width: window.innerWidth * 0.75, height: window.innerHeight * 0.80});
-//        mapState += 1;
-//    }
-//    else if(mapState == 2){
-//        $("#map").animate({width: 0, height: 0});
-//        mapState = 0;
-//    }
-//});
+    var mapState = 1;
+
+    if (location.hash !== "") {
+        $("#start").removeClass("show");
+    }
+    $("#start").find("a").on("click", function () {
+        $("#start").removeClass("show");
+        document.getElementById('video').innerHTML = '<video z-index="10000" width="100%" height="100%"  controls autoplay>' +
+            '<source src="video/output.webm" type="video/webm"></video>';
+        $("#map").hide('blind');
+        $("#carousel").hide('blind');
+        $(this).off("click");
+        $("#video").click(function () {
+            $("#video").remove();
+            $("#map").show();
+            $('#map').animate({
+                scrollLeft: currentLocation.x - ($('#map').width() / 2),
+                scrollTop: currentLocation.y - ($('#map').height() / 2)
+            }, 1500, 'easeInOutQuad');
+            $("#carousel").show();
+        });
+
+        $(function () {
+            setTimeout(function () {
+                $("#video").remove();
+                $("#map").show();
+                $('#map').animate({
+                    scrollLeft: currentLocation.x - ($('#map').width() / 2),
+                    scrollTop: currentLocation.y - ($('#map').height() / 2)
+                }, 1500, 'easeInOutQuad');
+                $("#carousel").show();
+            }, 11740);
+        });
+    });
 
     /***********************
      *  fancy box things   *
@@ -80,5 +97,32 @@ $(function () {
 
     for(var i in thumbs) {
         console.log($("#thumbImage"+String(i)).position());
+    }
+
+
+    /***
+     * Functions above requires the location tag passed in to be # + location tag name. (i.e "#hurst")
+     */
+
+    $(window).on('hashchange', function () {
+        getImage(location.hash);
+        getLocation(location.hash);
+        getNavs(location.hash);
+        getHspots(location.hash);
+        loadMap(location.hash);
+        getCIs(location.hash);
+        $('#map').animate({scrollLeft: currentLocation.x - ($('#map').width() / 2), scrollTop: currentLocation.y - ($('#map').height() / 2)}, 1500, 'easeInOutQuad');
+    });
+
+    if (window.location.hash) {
+        dispMainMenu();
+        $('#drilldown-1').dcDrilldown({
+            speed: 'fast',
+            saveState: false,
+            showCount: false,
+            linkType: 'backlink',
+            defaultText: ''
+        });
+        $(window).trigger('hashchange');
     }
 });

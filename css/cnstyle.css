@@ -17,7 +17,6 @@ body.contextual_navigation
     height: 38%;
     right: 0;
     overflow: hidden;
-    z-index: 5;
     border-color: #6F737A;
     border-width: 1px;
     border: solid;
